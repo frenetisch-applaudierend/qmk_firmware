@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,    KC_TAB,   CH_Q,     CH_W,     CH_E,     CH_R,     CH_T,      CH_Z,     CH_U,     CH_I,     CH_O,     CH_P,     CH_UDIA,  CH_DIAE,                        KC_PGUP,
         XXXXXXX,    SP_ESXT,  CH_A,     CH_S,     CH_D,     CH_F,     CH_G,      CH_H,     CH_J,     CH_K,     CH_L,     CH_ODIA,  CH_ADIA,  CH_DLR,   KC_ENT,               KC_PGDN,
         XXXXXXX,    KC_LSFT,  CH_LABK,  CH_Y,     CH_X,     CH_C,     CH_V,      CH_B,     CH_N,     CH_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,  KC_UP,
-        XXXXXXX,    KC_LCTL,  MO(FNB),  KC_LWIN,  KC_LALT,            KC_SPC,                        KC_SPC,             KC_RALT,  MO(FNB),   KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+        XXXXXXX,    KC_LCTL,  MO(FNB),  KC_LWIN,  KC_LALT,            KC_SPC,                        KC_SPC,             KC_RALT,  MO(FNB),  KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [FNB] = LAYOUT_92_iso(
         RM_TOGG,    MC_LCK,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   XXXXXXX,  XXXXXXX,    XXXXXXX,
