@@ -29,6 +29,6 @@ bool intl_process_keys(uint16_t keycode, keyrecord_t *record) {
 
 void _intl_tap_with_umlaut(uint16_t keycode) {
     register_code(CH_DIAE);
-    tap_code(keycode);
+    tap_code16(keycode);
     unregister_code(CH_DIAE);
 }

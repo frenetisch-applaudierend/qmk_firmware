@@ -1,7 +1,7 @@
 #pragma once
 
 enum keycodes {
-    MC_LCK,  // Lock screen macro
+    MC_LCK = SAFE_RANGE,  // Lock screen macro
 
     SP_ESXT, // Ext layer and escape button handling
 
