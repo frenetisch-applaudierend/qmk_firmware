@@ -17,12 +17,12 @@
 #include QMK_KEYBOARD_H
 
 #include "user_esxt.h"
+#include "user_intl.h"
 #include "user_keycodes.h"
 #include "user_layers.h"
 #include "user_os.h"
 
 #include "keymap_swiss_de.h"
-#include "sendstring_swiss_de.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BAS] = LAYOUT_92_iso(
@@ -44,16 +44,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [EXT] = LAYOUT_92_iso(
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,
-        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  CH_LPRN,  CH_LCBR,  CH_LBRC,  XXXXXXX,  XXXXXXX,                        XXXXXXX,
-        XXXXXXX,    XXXXXXX,  XXXXXXX,  MO(EXS),  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,
+        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  CH_LPRN,  CH_LCBR,  CH_LBRC,  SP_UDIC,  XXXXXXX,                        XXXXXXX,
+        XXXXXXX,    XXXXXXX,  XXXXXXX,  MO(EXS),  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  SP_ODIC,  SP_ADIC,  XXXXXXX,  XXXXXXX,              XXXXXXX,
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  CH_EQL,   XXXXXXX,  XXXXXXX,  CH_SLSH,            XXXXXXX,  XXXXXXX,
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  MO(FNE),            XXXXXXX,                       XXXXXXX,            XXXXXXX,  MO(FNE),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
     [EXS] = LAYOUT_92_iso(
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,
-        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  CH_RPRN,  CH_RCBR,  CH_RBRC,  XXXXXXX,  XXXXXXX,                        XXXXXXX,
-        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,
+        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  CH_RPRN,  CH_RCBR,  CH_RBRC,  SP_UDIC,  XXXXXXX,                        XXXXXXX,
+        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   SP_ODIC,  SP_ADIC,  XXXXXXX,  XXXXXXX,              XXXXXXX,
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,
         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
@@ -82,6 +82,10 @@ bool dip_switch_update_user(uint8_t index, bool active) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!esxt_process(keycode, record)) {
+        return false;
+    }
+
+    if (!intl_process_keys(keycode, record)) {
         return false;
     }
 
