@@ -16,11 +16,11 @@
 #include <stdint.h>
 #include QMK_KEYBOARD_H
 
-#include "user_esxt.h"
-#include "user_intl.h"
-#include "user_keycodes.h"
-#include "user_layers.h"
-#include "user_os.h"
+#include "../../../../common/user/user_esxt.h"
+#include "../../../../common/user/user_intl.h"
+#include "../../../../common/user/user_keycodes.h"
+#include "../../../../common/user/user_layers.h"
+#include "../../../../common/user/user_os.h"
 
 #include "keymap_swiss_de.h"
 
