@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MUTE,  KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,     KC_F12,   XXXXXXX,  XXXXXXX,  XXXXXXX,
         _______,  KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    KC_EQL,   XXXXXXX,            KC_DEL,
         _______,  KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,    KC_RBRC,                      XXXXXXX,
-        _______,  BSP_EXT,  A_GUI,    S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    SCL_GUI,  KC_QUOT,    KC_NUHS,  XXXXXXX,            XXXXXXX,
+        _______,  KC_BSPC,  A_GUI,    S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    SCL_GUI,  KC_QUOT,    KC_NUHS,  XXXXXXX,            XXXXXXX,
         _______,  XXXXXXX,  KC_NUBS,  KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              XXXXXXX,  XXXXXXX,
         _______,  XXXXXXX,  SP_FN,    XXXXXXX,  KC_TAB,             ENT_NAV,                       SPC_SYM,            KC_RALT,  SP_FN,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
@@ -84,8 +84,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NAVIGATION] = LAYOUT_92_iso(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  KC_UP,    XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,                      XXXXXXX,
-        XXXXXXX,  KC_BSPC,  KC_LGUI,  KC_LALT,  KC_LSFT,  KC_LCTL,  XXXXXXX,   XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_RGHT,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  KC_HOME,  KC_UP,    KC_END,   KC_PGUP,  XXXXXXX,    XXXXXXX,                      XXXXXXX,
+        XXXXXXX,  KC_BSPC,  KC_LGUI,  KC_LALT,  KC_LSFT,  KC_LCTL,  XXXXXXX,   XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PGDN,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
@@ -93,8 +93,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,                      XXXXXXX,
-        XXXXXXX,  KC_BSPC,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  KC_RCTL,  KC_RSFT,  KC_LALT,  KC_RGUI,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  XXXXXXX,
+        XXXXXXX,  KC_BSPC,  CH_LABK,  CH_LBRC,  CH_LCBR,  CH_LPRN,  CH_EQL,    XXXXXXX,  KC_RCTL,  KC_RSFT,  KC_LALT,  KC_RGUI,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  CH_SLSH,              XXXXXXX,  XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 };
 
@@ -129,9 +129,9 @@ bool make_dia(bool key_down, void *ctx) {
     return true;
 }
 
-const key_override_t paren_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LPRN, CH_RPRN, (1 << EXTENDED)); 
-const key_override_t curly_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LCBR, CH_RCBR, (1 << EXTENDED)); 
-const key_override_t brace_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LBRC, CH_RBRC, (1 << EXTENDED)); 
+const key_override_t paren_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LPRN, CH_RPRN, (1 << EXTENDED | 1 << SYMBOLS)); 
+const key_override_t curly_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LCBR, CH_RCBR, (1 << EXTENDED | 1 << SYMBOLS)); 
+const key_override_t brace_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LBRC, CH_RBRC, (1 << EXTENDED | 1 << SYMBOLS)); 
 
 const key_override_t cap_adia_override = ko_make_cap_dia(CH_ADIA, CH_A);
 const key_override_t cap_odia_override = ko_make_cap_dia(CH_ODIA, CH_O);
