@@ -109,20 +109,22 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif // ENCODER_MAP_ENABLE
 
-#define ko_make_cap_dia(dia, base) { \
-    .trigger = dia,                  \
-    .trigger_mods = MOD_MASK_SHIFT,  \
-    .replacement = base,             \
-    .layers = ~0,                    \
-    .custom_action = make_dia,       \
-    .options = ko_options_default    \
+#define ko_make_cap_dia(dia, base) {   \
+    .trigger = dia,                    \
+    .trigger_mods = MOD_MASK_SHIFT,    \
+    .replacement = base,               \
+    .layers = ~0,                      \
+    .custom_action = make_dia,         \
+    .options = ko_options_default      \
 }
 
 bool make_dia(bool key_down, void *ctx) {
     if (key_down) {
+        unregister_code(KC_LSFT);
         register_code(CH_DIAE);
     } else {
         unregister_code(CH_DIAE);
+        register_code(KC_LSFT);
     }
     return true;
 }
