@@ -33,6 +33,7 @@ enum layers {
 #define SPC_SYM LT(SYMBOLS, KC_SPC)
 #define ENT_NAV LT(NAVIGATION, KC_ENTER)
 
+#define OOOOOOO XXXXXXX
 
 // Left-hand home row mods
 #define A_GUI LGUI_T(KC_A)
@@ -56,10 +57,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [REDUX] = LAYOUT_92_iso(
         KC_MUTE,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        _______,  KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        _______,  KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     CH_UDIA,    XXXXXXX,                      XXXXXXX,
+        _______,  OOOOOOO,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        _______,  OOOOOOO,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     CH_UDIA,    XXXXXXX,                      XXXXXXX,
         _______,  KC_BSPC,  A_GUI,    S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    CH_ODIA,  CH_ADIA,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        _______,  XXXXXXX,  KC_ESC,   KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              XXXXXXX,  XXXXXXX,
+        _______,  OOOOOOO,  KC_ESC,   KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              XXXXXXX,  XXXXXXX,
         _______,  XXXXXXX,  SP_FN,    XXXXXXX,  KC_TAB,             ENT_NAV,                       SPC_SYM,            KC_RALT,  SP_FN,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
     [FUNCTION] = LAYOUT_92_iso(
@@ -116,28 +117,32 @@ bool make_dia(bool key_down, void *ctx) {
     return true;
 }
 
-const key_override_t paren_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LPRN, CH_RPRN, (1 << SYMBOLS)); 
-const key_override_t curly_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LCBR, CH_RCBR, (1 << SYMBOLS)); 
-const key_override_t brace_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LBRC, CH_RBRC, (1 << SYMBOLS)); 
-
-const key_override_t backslash_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_SLSH, CH_BSLS, (1 << SYMBOLS)); 
-const key_override_t delete_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL); 
-
+const key_override_t delete_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 const key_override_t cap_adia_override = ko_make_cap_dia(CH_ADIA, CH_A);
 const key_override_t cap_odia_override = ko_make_cap_dia(CH_ODIA, CH_O);
-const key_override_t cap_udia_override = ko_make_cap_dia(CH_UDIA, CH_U); 
+const key_override_t cap_udia_override = ko_make_cap_dia(CH_UDIA, CH_U);
+
+#define LAYER_SYMBOLS (1 << SYMBOLS)
+const key_override_t paren_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LPRN, CH_RPRN, LAYER_SYMBOLS); 
+const key_override_t curly_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LCBR, CH_RCBR, LAYER_SYMBOLS); 
+const key_override_t brace_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LBRC, CH_RBRC, LAYER_SYMBOLS); 
+const key_override_t backslash_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_SLSH, CH_BSLS, LAYER_SYMBOLS); 
+const key_override_t excl_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_AT, CH_EQL, LAYER_SYMBOLS);
+const key_override_t question_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_DQUO, CH_QUES, LAYER_SYMBOLS);
 
 const key_override_t *key_overrides[] = {
-	&paren_override,
-	&curly_override,
-	&brace_override,
-
-    &backslash_override,
-    &delete_override,
-
+	&delete_override,
     &cap_adia_override,
     &cap_odia_override,
     &cap_udia_override,
+
+    &paren_override,
+	&curly_override,
+	&brace_override,
+    &backslash_override,
+    &excl_override,
+    &question_override,
+    
 };
 
 bool dip_switch_update_user(uint8_t index, bool active) {
