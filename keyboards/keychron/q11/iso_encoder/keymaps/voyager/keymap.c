@@ -15,8 +15,6 @@
  */
 #include QMK_KEYBOARD_H
 
-#include "keymap_swiss_de.h"
-
 enum layers {
     NORMAL,
     REDUX,
@@ -35,8 +33,8 @@ enum layers {
 
 #define OOOOOOO XXXXXXX
 
+
 // Left-hand home row mods
-#define A_GUI LGUI_T(KC_A)
 #define S_ALT LALT_T(KC_S)
 #define D_SFT LSFT_T(KC_D)
 #define F_CTL LCTL_T(KC_F)
@@ -45,6 +43,24 @@ enum layers {
 #define J_CTL RCTL_T(KC_J)
 #define K_SFT RSFT_T(KC_K)
 #define L_ALT LALT_T(KC_L)
+#define OE_GUI RGUI_T(CH_ODIA)
+#define SL_RALT RALT_T(KC_SLASH)
+
+// Umlauts
+#define CH_ADIA RALT(KC_Q)
+#define CH_ODIA RALT(KC_P)
+#define CH_UDIA RALT(KC_Y)
+
+// Symbols
+#define SY_LPRN S(KC_9)
+#define SY_RPRN S(KC_0)
+#define SY_LCBR S(KC_LBRC)
+#define SY_RCBR S(KC_RBRC)
+#define SY_LBRC KC_LBRC
+#define SY_RBRC KC_RBRC
+#define SY_LABK S(KC_COMMA)
+#define SY_RABK S(KC_DOT)
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NORMAL] = LAYOUT_92_iso(
@@ -59,8 +75,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MUTE,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         _______,  OOOOOOO,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    XXXXXXX,  XXXXXXX,            XXXXXXX,
         _______,  OOOOOOO,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     CH_UDIA,    XXXXXXX,                      XXXXXXX,
-        _______,  KC_BSPC,  A_GUI,    S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    CH_ODIA,  CH_ADIA,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        _______,  OOOOOOO,  KC_ESC,   KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   CH_SLSH,              CH_MINS,  XXXXXXX,
+        _______,  KC_BSPC,  KC_A,     S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    OE_GUI,   CH_ADIA,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        _______,  XXXXXXX,  KC_ESC,   KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   SL_RALT,              KC_MINS,  XXXXXXX,
         _______,  XXXXXXX,  SP_FN,    XXXXXXX,  KC_TAB,             ENT_NAV,                       SPC_SYM,            KC_RALT,  SP_FN,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
     [FUNCTION] = LAYOUT_92_iso(
@@ -73,19 +89,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAVIGATION] = LAYOUT_92_iso(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  KC_HOME,  KC_UP,    KC_END,   KC_PGUP,  XXXXXXX,    XXXXXXX,                      XXXXXXX,
-        XXXXXXX,  KC_BSPC,  KC_LGUI,  KC_LALT,  KC_LSFT,  KC_LCTL,  XXXXXXX,   XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PGDN,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,                       KC_SPACE,            XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+        XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  KC_HOME,  KC_UP,    KC_END,   KC_PGUP,  OOOOOOO,    XXXXXXX,                      XXXXXXX,
+        XXXXXXX,  KC_BSPC,  KC_LGUI,  KC_LALT,  KC_LSFT,  KC_LCTL,  OOOOOOO,   OOOOOOO,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PGDN,  OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,              OOOOOOO,  XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,                       KC_SPACE,           XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
     [SYMBOLS] = LAYOUT_92_iso(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        XXXXXXX,  XXXXXXX,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        XXXXXXX,  XXXXXXX,  CH_AT,    CH_DQUO,  CH_QUOT,  CH_DLR,   CH_EQL,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,                      XXXXXXX,
-        XXXXXXX,  KC_BSPC,  CH_LABK,  CH_LBRC,  CH_LCBR,  CH_LPRN,  CH_SCLN,   XXXXXXX,  KC_RCTL,  KC_RSFT,  KC_LALT,  KC_RGUI,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        XXXXXXX,  XXXXXXX,  CH_SLSH,  XXXXXXX,  CH_AMPR,  CH_PIPE,  CH_HASH,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_ENTER,                       XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+        XXXXXXX,  OOOOOOO,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,    XXXXXXX,                      XXXXXXX,
+        XXXXXXX,  KC_BSPC,  SY_LABK,  SY_LBRC,  SY_LCBR,  SY_LPRN,  KC_SCLN,   OOOOOOO,  KC_RCTL,  KC_RSFT,  KC_LALT,  KC_RGUI,  OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,              OOOOOOO,  XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  OOOOOOO,            KC_ENTER,                       XXXXXXX,           XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 };
 
 #if defined(ENCODER_MAP_ENABLE)
@@ -98,51 +114,27 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif // ENCODER_MAP_ENABLE
 
-#define ko_make_cap_dia(dia, base) {   \
-    .trigger = dia,                    \
-    .trigger_mods = MOD_MASK_SHIFT,    \
-    .replacement = S(base),            \
-    .suppressed_mods = MOD_MASK_SHIFT, \
-    .layers = ~0,                      \
-    .custom_action = make_dia,         \
-    .options = ko_options_default      \
-}
-
-bool make_dia(bool key_down, void *ctx) {
-    if (key_down) {
-        register_code(CH_DIAE);
-    } else {
-        unregister_code(CH_DIAE);
-    }
-    return true;
-}
-
 const key_override_t delete_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
-const key_override_t cap_adia_override = ko_make_cap_dia(CH_ADIA, CH_A);
-const key_override_t cap_odia_override = ko_make_cap_dia(CH_ODIA, CH_O);
-const key_override_t cap_udia_override = ko_make_cap_dia(CH_UDIA, CH_U);
 
 #define LAYER_SYMBOLS (1 << SYMBOLS)
-const key_override_t paren_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LPRN, CH_RPRN, LAYER_SYMBOLS); 
-const key_override_t curly_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LCBR, CH_RCBR, LAYER_SYMBOLS); 
-const key_override_t brace_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_LBRC, CH_RBRC, LAYER_SYMBOLS); 
-const key_override_t backslash_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_SLSH, CH_BSLS, LAYER_SYMBOLS); 
-const key_override_t excl_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_AT, CH_EQL, LAYER_SYMBOLS);
-const key_override_t question_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_DQUO, CH_QUES, LAYER_SYMBOLS);
+const key_override_t paren_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LPRN, SY_RPRN, LAYER_SYMBOLS);
+const key_override_t curly_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LCBR, SY_RCBR, LAYER_SYMBOLS);
+const key_override_t brace_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LBRC, SY_RBRC, LAYER_SYMBOLS);
+const key_override_t angle_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LABK, SY_RABK, LAYER_SYMBOLS);
+// const key_override_t backslash_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_SLSH, CH_BSLS, LAYER_SYMBOLS);
+// const key_override_t excl_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_AT, CH_EQL, LAYER_SYMBOLS)
+// const key_override_t question_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_DQUO, CH_QUES, LAYER_SYMBOLS);
 
 const key_override_t *key_overrides[] = {
 	&delete_override,
-    &cap_adia_override,
-    &cap_odia_override,
-    &cap_udia_override,
 
     &paren_override,
 	&curly_override,
 	&brace_override,
-    &backslash_override,
-    &excl_override,
-    &question_override,
-    
+    &angle_override,
+    // &backslash_override,
+    // &excl_override,
+    // &question_override,
 };
 
 bool dip_switch_update_user(uint8_t index, bool active) {
