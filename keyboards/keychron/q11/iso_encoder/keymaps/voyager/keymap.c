@@ -35,6 +35,7 @@ enum layers {
 
 
 // Left-hand home row mods
+#define A_GUI LGUI_T(KC_A)
 #define S_ALT LALT_T(KC_S)
 #define D_SFT LSFT_T(KC_D)
 #define F_CTL LCTL_T(KC_F)
@@ -43,8 +44,8 @@ enum layers {
 #define J_CTL RCTL_T(KC_J)
 #define K_SFT RSFT_T(KC_K)
 #define L_ALT LALT_T(KC_L)
-#define OE_GUI RGUI_T(CH_ODIA)
-#define SL_RALT RALT_T(KC_SLASH)
+#define OE_RALT RALT_T(CH_ODIA)
+#define SL_GUI RGUI_T(KC_SLASH)
 
 // Umlauts
 #define CH_ADIA RALT(KC_Q)
@@ -69,14 +70,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,    KC_RBRC,                      KC_PGDN,
         _______,  KC_BSPC,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,    KC_NUHS,  KC_ENT,             KC_HOME,
         _______,  KC_LSFT,  KC_NUBS,  KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,  KC_UP,
-        _______,  KC_LCTL,  SP_FN,    KC_LWIN,  KC_LALT,            KC_SPACE,                      SPC_SYM,             KC_RALT,  SP_FN,     KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+        _______,  KC_LCTL,  SP_FN,    KC_LWIN,  KC_LALT,            KC_SPACE,                      KC_SPACE,            KC_RALT,  SP_FN,     KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [REDUX] = LAYOUT_92_iso(
         KC_MUTE,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         _______,  OOOOOOO,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,    XXXXXXX,  XXXXXXX,            XXXXXXX,
         _______,  OOOOOOO,  KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     CH_UDIA,    XXXXXXX,                      XXXXXXX,
-        _______,  KC_BSPC,  KC_A,     S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    OE_GUI,   CH_ADIA,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        _______,  XXXXXXX,  KC_ESC,   KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   SL_RALT,              KC_MINS,  XXXXXXX,
+        _______,  KC_BSPC,  KC_A,     S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    OE_RALT,  CH_ADIA,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        _______,  XXXXXXX,  KC_ESC,   KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   SL_GUI,               KC_MINS,  XXXXXXX,
         _______,  XXXXXXX,  SP_FN,    XXXXXXX,  KC_TAB,             ENT_NAV,                       SPC_SYM,            KC_RALT,  SP_FN,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
     [FUNCTION] = LAYOUT_92_iso(
