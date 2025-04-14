@@ -61,6 +61,11 @@ enum layers {
 #define SY_RBRC KC_RBRC
 #define SY_LABK S(KC_COMMA)
 #define SY_RABK S(KC_DOT)
+#define SY_AT S(KC_2)
+
+enum custom_keycodes {
+    SY_QUOT = SAFE_RANGE,
+};
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -99,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYMBOLS] = LAYOUT_92_iso(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         XXXXXXX,  OOOOOOO,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,    XXXXXXX,                      XXXXXXX,
+        XXXXXXX,  OOOOOOO,  SY_AT,    SY_QUOT,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,    XXXXXXX,                      XXXXXXX,
         XXXXXXX,  KC_BSPC,  SY_LABK,  SY_LBRC,  SY_LCBR,  SY_LPRN,  KC_SCLN,   OOOOOOO,  KC_RCTL,  KC_RSFT,  KC_LALT,  KC_RGUI,  OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
         XXXXXXX,  XXXXXXX,  QK_LLCK,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,              QK_LLCK,  XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  OOOOOOO,            KC_ENTER,                       XXXXXXX,           XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
@@ -115,27 +120,21 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif // ENCODER_MAP_ENABLE
 
-const key_override_t delete_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+const key_override_t bspc_del = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
 
 #define LAYER_SYMBOLS (1 << SYMBOLS)
-const key_override_t paren_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LPRN, SY_RPRN, LAYER_SYMBOLS);
-const key_override_t curly_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LCBR, SY_RCBR, LAYER_SYMBOLS);
-const key_override_t brace_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LBRC, SY_RBRC, LAYER_SYMBOLS);
-const key_override_t angle_override = ko_make_with_layers(MOD_MASK_SHIFT, SY_LABK, SY_RABK, LAYER_SYMBOLS);
-// const key_override_t backslash_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_SLSH, CH_BSLS, LAYER_SYMBOLS);
-// const key_override_t excl_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_AT, CH_EQL, LAYER_SYMBOLS)
-// const key_override_t question_override = ko_make_with_layers(MOD_MASK_SHIFT, CH_DQUO, CH_QUES, LAYER_SYMBOLS);
+const key_override_t sy_rprn = ko_make_with_layers(MOD_MASK_SHIFT, SY_LPRN, SY_RPRN, LAYER_SYMBOLS);
+const key_override_t sy_rcbr = ko_make_with_layers(MOD_MASK_SHIFT, SY_LCBR, SY_RCBR, LAYER_SYMBOLS);
+const key_override_t sy_rbrc = ko_make_with_layers(MOD_MASK_SHIFT, SY_LBRC, SY_RBRC, LAYER_SYMBOLS);
+const key_override_t sy_rabk = ko_make_with_layers(MOD_MASK_SHIFT, SY_LABK, SY_RABK, LAYER_SYMBOLS);
 
 const key_override_t *key_overrides[] = {
-	&delete_override,
+	&bspc_del,
 
-    &paren_override,
-	&curly_override,
-	&brace_override,
-    &angle_override,
-    // &backslash_override,
-    // &excl_override,
-    // &question_override,
+    &sy_rprn,
+	&sy_rcbr,
+	&sy_rbrc,
+    &sy_rabk,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -148,6 +147,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        }
+
+        // In the US international layout, the quote keys are dead
+        case SY_QUOT: {
+            if (record->event.pressed) {
+                tap_code16(KC_QUOTE);
+                tap_code16(KC_SPACE);
+            }
+            return false;
         }
     }
     return true;
