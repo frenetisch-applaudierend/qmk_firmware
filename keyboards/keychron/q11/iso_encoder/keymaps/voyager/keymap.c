@@ -20,7 +20,8 @@ enum layers {
     REDUX,
     FUNCTION,
     NAVIGATION,
-    SYMBOLS
+    SYMBOLS,
+    NUMBLOCK
 };
 
 #define KC_TASK LGUI(KC_TAB)
@@ -30,6 +31,7 @@ enum layers {
 
 #define SPC_SYM LT(SYMBOLS, KC_SPC)
 #define ENT_NAV LT(NAVIGATION, KC_ENTER)
+#define TAB_NUM LT(NUMBLOCK, KC_TAB)
 
 #define OOOOOOO XXXXXXX
 
@@ -83,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  KC_EQL,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     CH_UDIA,    XXXXXXX,                      XXXXXXX,
         _______,  KC_BSPC,  A_GUI,    S_ALT,    D_SFT,    F_CTL,    KC_G,      KC_H,     J_CTL,    K_SFT,    L_ALT,    OE_RALT,  CH_ADIA,    XXXXXXX,  XXXXXXX,            XXXXXXX,
         _______,  XXXXXXX,  KC_ESC,   KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   SL_GUI,               KC_MINS,  XXXXXXX,
-        _______,  XXXXXXX,  SP_FN,    XXXXXXX,  KC_TAB,             ENT_NAV,                       SPC_SYM,            KC_RALT,  SP_FN,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+        _______,  XXXXXXX,  SP_FN,    XXXXXXX,  TAB_NUM,            ENT_NAV,                       SPC_SYM,            KC_RALT,  SP_FN,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
     [FUNCTION] = LAYOUT_92_iso(
         RM_TOGG,  _______,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FLXP,  RM_VALD,   RM_VALU,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,    KC_VOLU,  KC_INS,   _______,  RM_TOGG,
@@ -108,6 +110,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,  KC_BSPC,  SY_LABK,  SY_LBRC,  SY_LCBR,  SY_LPRN,  KC_SCLN,   OOOOOOO,  KC_RCTL,  KC_RSFT,  KC_LALT,  KC_RGUI,  OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
         XXXXXXX,  XXXXXXX,  QK_LLCK,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,              QK_LLCK,  XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  OOOOOOO,            KC_ENTER,                       XXXXXXX,           XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+
+    [NUMBLOCK] = LAYOUT_92_iso(
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  KC_MINS,  OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   KC_COMM,  KC_P7,    KC_P8,    KC_P9,    KC_PLUS,  OOOOOOO,    XXXXXXX,                      XXXXXXX,
+        XXXXXXX,  KC_BSPC,  KC_LGUI,  KC_LALT,  KC_LSFT,  KC_LCTL,  OOOOOOO,   KC_DOT,   KC_P4,    KC_P5,    KC_P6,    KC_ASTR,  OOOOOOO,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,  XXXXXXX,  QK_LLCK,  OOOOOOO,  OOOOOOO,  OOOOOOO,  OOOOOOO,   OOOOOOO,  OOOOOOO,  KC_P1,    KC_P2,    KC_P3,    KC_SLSH,              QK_LLCK,  XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_NUM,                        KC_P0,              XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 };
 
 #if defined(ENCODER_MAP_ENABLE)
@@ -115,12 +125,17 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [NORMAL]     = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [REDUX]      = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [FUNCTION]   = { ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(RM_VALD, RM_VALU) },
-    [NAVIGATION] = { ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(RM_VALD, RM_VALU) },
-    [SYMBOLS]    = { ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(RM_VALD, RM_VALU) },
+    [NAVIGATION] = { ENCODER_CCW_CW(KC_NO, KC_NO), ENCODER_CCW_CW(KC_NO, KC_NO) },
+    [SYMBOLS]    = { ENCODER_CCW_CW(KC_NO, KC_NO), ENCODER_CCW_CW(KC_NO, KC_NO) },
+    [NUMBLOCK]   = { ENCODER_CCW_CW(KC_NO, KC_NO), ENCODER_CCW_CW(KC_NO, KC_NO) },
 };
 #endif // ENCODER_MAP_ENABLE
 
 const key_override_t bspc_del = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+
+#define LAYER_REDUX (1 << REDUX)
+const key_override_t rd_exclaim = ko_make_with_layers(MOD_MASK_SHIFT, KC_COMMA, KC_EXCLAIM, LAYER_REDUX);
+const key_override_t rd_colon= ko_make_with_layers(MOD_MASK_SHIFT, KC_DOT, KC_COLON, LAYER_REDUX);
 
 #define LAYER_SYMBOLS (1 << SYMBOLS)
 const key_override_t sy_rprn = ko_make_with_layers(MOD_MASK_SHIFT, SY_LPRN, SY_RPRN, LAYER_SYMBOLS);
@@ -130,6 +145,9 @@ const key_override_t sy_rabk = ko_make_with_layers(MOD_MASK_SHIFT, SY_LABK, SY_R
 
 const key_override_t *key_overrides[] = {
 	&bspc_del,
+
+    &rd_exclaim,
+    &rd_colon,
 
     &sy_rprn,
 	&sy_rcbr,
